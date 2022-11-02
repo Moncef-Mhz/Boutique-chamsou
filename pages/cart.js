@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useContext } from "react";
-import Layout from "../components/layout/layout";
+import Layout from "../components/layout";
 import Image from "next/image";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Store } from "../utils/Store";

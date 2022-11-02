@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
-import Layout from "../components/layout/layout";
+import Layout from "../components/layout";
 import { useForm } from "react-hook-form";
 import { getError } from "../utils/error";
 import { toast } from "react-toastify";

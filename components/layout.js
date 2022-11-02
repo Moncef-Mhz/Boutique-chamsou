@@ -12,8 +12,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
-import { Store } from "../../utils/Store";
-import DropdownLink from "../DropdownLink";
+import { Store } from "../utils/Store";
+import DropdownLink from "./DropdownLink";
 
 const Layout = ({ children, title }) => {
   const { status, data: session } = useSession();

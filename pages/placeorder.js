@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import CheckoutWizard from "../components/CheckoutWizard";
-import Layout from "../components/layout/layout";
+import Layout from "../components/layout";
 import { getError } from "../utils/error";
 import { Store } from "../utils/Store";
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useReducer } from "react";
 import { getError } from "../../utils/error";
-import Layout from "../../components/layout/layout";
+import Layout from "../../components/layout";
 
 function reducer(state, action) {
   switch (action.type) {
