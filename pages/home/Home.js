@@ -13,7 +13,7 @@ const Home = () => {
       <div className="absolute bottom-0 left-0 ml-8 mb-12 z-10 flex flex-col gap-4">
         <div>
           <h1 className="text-3xl sm:text-6xl md:text-6xl font-bold text-white">
-            New Autunm
+            New Autunms
           </h1>
           <h1 className="text-3xl sm:text-6xl md:text-6xl font-bold text-white">
             2022 collection
