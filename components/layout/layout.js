@@ -4,16 +4,15 @@ import {
   AiOutlineClose,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { ToastContainer } from "react-toastify";
-import { useContext, useState, useEffect } from "react";
+import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Cookies from "js-cookie";
 import Link from "next/link";
-import React from "react";
+import Cookies from "js-cookie";
+import React, { useContext, useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../../utils/Store";
-import { useSession, signOut } from "next-auth/react";
-import { Menu } from "@headlessui/react";
 import DropdownLink from "../DropdownLink";
 
 const Layout = ({ children, title }) => {
@@ -239,11 +238,6 @@ const Layout = ({ children, title }) => {
 
       {/* main section  */}
       <main>{children}</main>
-
-      {/* footer  */}
-      {/* <footer className=" bottom-0 left-0 h-[35px] bg-[#161616] text-white w-full flex items-center justify-center">
-        All Copyrights are desrved 2022
-      </footer> */}
     </>
   );
 };

@@ -1,7 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
 import { Bar } from "react-chartjs-2";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -45,7 +44,7 @@ function reducer(state, action) {
       state;
   }
 }
-function AdminDashboardScreen() {
+const AdminDashboardScreen = () => {
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
     summary: { salesData: [] },
@@ -140,7 +139,7 @@ function AdminDashboardScreen() {
       </div>
     </Layout>
   );
-}
+};
 
 AdminDashboardScreen.auth = { adminOnly: true };
 export default AdminDashboardScreen;
