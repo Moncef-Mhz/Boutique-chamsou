@@ -9,15 +9,9 @@ const data = {
     },
     {
       name: "moncef",
-      email: "moncef2006@gmail.com",
+      email: "meharzi@gmail.com",
       password: bcrypt.hashSync("moncef2006"),
-      isAdmin: false,
-    },
-    {
-      name: "imad",
-      email: "user@gmail.com",
-      password: bcrypt.hashSync("imad"),
-      isAdmin: false,
+      isAdmin: true,
     },
   ],
   product: [

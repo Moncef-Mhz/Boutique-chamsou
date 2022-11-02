@@ -9,6 +9,7 @@ import { useContext, useState, useEffect } from "react";
 import Head from "next/head";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../../utils/Store";
 import { useSession, signOut } from "next-auth/react";
@@ -32,7 +33,6 @@ const Layout = ({ children, title }) => {
   const openNavHandler = () => {
     setOpenNav(!openNav);
   };
-
   const logoutClickHandler = () => {
     Cookies.remove("cart");
     dispatch({ type: "CART_REST" });
@@ -120,6 +120,16 @@ const Layout = ({ children, title }) => {
                       Oreder History
                     </DropdownLink>
                   </Menu.Item>
+                  {session.user.isAdmin && (
+                    <Menu.Item>
+                      <DropdownLink
+                        className="dropdown-link"
+                        href="/admin/dashboard"
+                      >
+                        Admin Dashboard
+                      </DropdownLink>
+                    </Menu.Item>
+                  )}
                   <Menu.Item>
                     <a
                       className="dropdown-link"
