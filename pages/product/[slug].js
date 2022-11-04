@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
+
 import {
   AiOutlineHeart,
   AiFillHeart,
@@ -39,7 +40,6 @@ const ProductScreen = (props) => {
   const SizeHandler = (e) => {
     SetSize(e.target.value);
   };
-  console.log(Size);
 
   const ColorHandler = (e) => {
     SetColor(e.target.value);

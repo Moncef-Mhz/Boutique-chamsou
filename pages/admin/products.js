@@ -46,9 +46,6 @@ export default function AdminProdcutsScreen() {
   });
 
   const createHandler = async () => {
-    if (!window.confirm("Are you sure?")) {
-      return;
-    }
     try {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(`/api/admin/products`);
@@ -138,8 +135,8 @@ export default function AdminProdcutsScreen() {
                     <th className="p-5 text-left">NAME</th>
                     <th className="p-5 text-left">PRICE</th>
                     <th className="p-5 text-left">CATEGORY</th>
+                    <th className="p-5 text-left">Taille</th>
                     <th className="p-5 text-left">COUNT</th>
-                    <th className="p-5 text-left">RATING</th>
                     <th className="p-5 text-left">ACTIONS</th>
                   </tr>
                 </thead>
@@ -147,11 +144,11 @@ export default function AdminProdcutsScreen() {
                   {products.map((product) => (
                     <tr key={product._id} className="border-b">
                       <td className=" p-5 ">{product._id.substring(20, 24)}</td>
-                      <td className=" p-5 ">{product.name}</td>
-                      <td className=" p-5 ">${product.price}</td>
-                      <td className=" p-5 ">{product.category}</td>
-                      <td className=" p-5 ">{product.countInStock}</td>
-                      <td className=" p-5 ">{product.rating}</td>
+                      <td className=" p-5 ">{product.Name}</td>
+                      <td className=" p-5 ">{product.Price} da</td>
+                      <td className=" p-5 ">{product.Categories}</td>
+                      <td className=" p-5 ">{product.Taille}</td>
+                      <td className=" p-5 ">{product.CountInStock}</td>
                       <td className=" p-5 ">
                         <Link href={`/admin/product/${product._id}`}>
                           <a type="button" className="default-button">

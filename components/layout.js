@@ -91,11 +91,11 @@ const Layout = ({ children, title }) => {
                 </a>
               </Link>
 
-              {cart.cartItems.length > 0 && (
-                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+              {/* {cart.cartItems.length > 0 && (
+                <div className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {CartitemCount}
-                </span>
-              )}
+                </div>
+              )} */}
             </div>
 
             {status === "loading" ? (

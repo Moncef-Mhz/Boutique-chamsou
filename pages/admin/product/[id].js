@@ -60,14 +60,15 @@ export default function AdminProductEditScreen() {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(`/api/admin/products/${productId}`);
         dispatch({ type: "FETCH_SUCCESS" });
-        setValue("name", data.name);
-        setValue("slug", data.slug);
-        setValue("price", data.price);
-        setValue("image", data.image);
-        setValue("category", data.category);
-        setValue("brand", data.brand);
-        setValue("countInStock", data.countInStock);
-        setValue("description", data.description);
+        setValue("Name", data.Name);
+        setValue("Slug", data.Slug);
+        setValue("Price", data.Price);
+        setValue("Image", data.Image);
+        setValue("Categories", data.Categories);
+        setValue("Taille", data.Taille);
+        setValue("Brand", data.Brand);
+        setValue("CountInStock", data.CountInStock);
+        setValue("Description", data.Description);
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
@@ -78,7 +79,7 @@ export default function AdminProductEditScreen() {
 
   const router = useRouter();
 
-  const uploadHandler = async (e, imageField = "image") => {
+  const uploadHandler = async (e, ImageField = "Image") => {
     const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
     try {
       dispatch({ type: "UPLOAD_REQUEST" });
@@ -94,7 +95,7 @@ export default function AdminProductEditScreen() {
       formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
       const { data } = await axios.post(url, formData);
       dispatch({ type: "UPLOAD_SUCCESS" });
-      setValue(imageField, data.secure_url);
+      setValue(ImageField, data.secure_url);
       toast.success("File uploaded successfully");
     } catch (err) {
       dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
@@ -103,26 +104,28 @@ export default function AdminProductEditScreen() {
   };
 
   const submitHandler = async ({
-    name,
-    slug,
-    price,
-    category,
-    image,
-    brand,
-    countInStock,
-    description,
+    Name,
+    Slug,
+    Price,
+    Categories,
+    Taille,
+    Image,
+    Brand,
+    CountInStock,
+    Description,
   }) => {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(`/api/admin/products/${productId}`, {
-        name,
-        slug,
-        price,
-        category,
-        image,
-        brand,
-        countInStock,
-        description,
+        Name,
+        Slug,
+        Price,
+        Categories,
+        Taille,
+        Image,
+        Brand,
+        CountInStock,
+        Description,
       });
       dispatch({ type: "UPDATE_SUCCESS" });
       toast.success("Product updated successfully");
@@ -166,130 +169,146 @@ export default function AdminProductEditScreen() {
             >
               <h1 className="mb-4 text-xl">{`Edit Product ${productId}`}</h1>
               <div className="mb-4">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="Name">Name</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="name"
+                  id="Name"
                   autoFocus
-                  {...register("name", {
+                  {...register("Name", {
                     required: "Please enter name",
                   })}
                 />
-                {errors.name && (
-                  <div className="text-red-500">{errors.name.message}</div>
+                {errors.Name && (
+                  <div className="text-red-500">{errors.Name.message}</div>
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="slug">Slug</label>
+                <label htmlFor="Slug">Slug</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="slug"
-                  {...register("slug", {
+                  id="Slug"
+                  {...register("Slug", {
                     required: "Please enter slug",
                   })}
                 />
-                {errors.slug && (
-                  <div className="text-red-500">{errors.slug.message}</div>
+                {errors.Slug && (
+                  <div className="text-red-500">{errors.Slug.message}</div>
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="price">Price</label>
+                <label htmlFor="Price">Price</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="price"
-                  {...register("price", {
-                    required: "Please enter price",
+                  id="Price"
+                  {...register("Price", {
+                    required: "Please enter Price",
                   })}
                 />
-                {errors.price && (
-                  <div className="text-red-500">{errors.price.message}</div>
+                {errors.Price && (
+                  <div className="text-red-500">{errors.Price.message}</div>
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="image">image</label>
+                <label htmlFor="Image">Image</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="image"
-                  {...register("image", {
-                    required: "Please enter image",
+                  id="Image"
+                  {...register("Image", {
+                    required: "Please enter Image",
                   })}
                 />
-                {errors.image && (
-                  <div className="text-red-500">{errors.image.message}</div>
+                {errors.Image && (
+                  <div className="text-red-500">{errors.Image.message}</div>
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="imageFile">Upload image</label>
+                <label htmlFor="ImageFile">Upload Image</label>
                 <input
                   type="file"
                   className="w-full"
-                  id="imageFile"
+                  id="ImageFile"
                   onChange={uploadHandler}
                 />
 
                 {loadingUpload && <div>Uploading....</div>}
               </div>
               <div className="mb-4">
-                <label htmlFor="category">category</label>
+                <label htmlFor="taille">taille</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="category"
-                  {...register("category", {
+                  id="taille"
+                  {...register("taille", {
+                    required: "Please enter taille",
+                  })}
+                />
+                {errors.taille && (
+                  <div className="text-red-500">{errors.taille.message}</div>
+                )}
+              </div>
+              <div className="mb-4">
+                <label htmlFor="Categories">category</label>
+                <input
+                  type="text"
+                  className="w-full"
+                  id="Categories"
+                  {...register("Categories", {
                     required: "Please enter category",
                   })}
                 />
-                {errors.category && (
-                  <div className="text-red-500">{errors.category.message}</div>
-                )}
-              </div>
-              <div className="mb-4">
-                <label htmlFor="brand">brand</label>
-                <input
-                  type="text"
-                  className="w-full"
-                  id="brand"
-                  {...register("brand", {
-                    required: "Please enter brand",
-                  })}
-                />
-                {errors.brand && (
-                  <div className="text-red-500">{errors.brand.message}</div>
-                )}
-              </div>
-              <div className="mb-4">
-                <label htmlFor="countInStock">countInStock</label>
-                <input
-                  type="text"
-                  className="w-full"
-                  id="countInStock"
-                  {...register("countInStock", {
-                    required: "Please enter countInStock",
-                  })}
-                />
-                {errors.countInStock && (
+                {errors.Categories && (
                   <div className="text-red-500">
-                    {errors.countInStock.message}
+                    {errors.Categories.message}
                   </div>
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="countInStock">description</label>
+                <label htmlFor="Brand">Brand</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="description"
-                  {...register("description", {
-                    required: "Please enter description",
+                  id="Brand"
+                  {...register("Brand", {
+                    required: "Please enter Brand",
                   })}
                 />
-                {errors.description && (
+                {errors.Brand && (
+                  <div className="text-red-500">{errors.Brand.message}</div>
+                )}
+              </div>
+              <div className="mb-4">
+                <label htmlFor="CountInStock">CountInStock</label>
+                <input
+                  type="text"
+                  className="w-full"
+                  id="CountInStock"
+                  {...register("CountInStock", {
+                    required: "Please enter CountInStock",
+                  })}
+                />
+                {errors.CountInStock && (
                   <div className="text-red-500">
-                    {errors.description.message}
+                    {errors.CountInStock.message}
+                  </div>
+                )}
+              </div>
+              <div className="mb-4">
+                <label htmlFor="CountInStock">Description</label>
+                <input
+                  type="text"
+                  className="w-full"
+                  id="Description"
+                  {...register("Description", {
+                    required: "Please enter Description",
+                  })}
+                />
+                {errors.Description && (
+                  <div className="text-red-500">
+                    {errors.Description.message}
                   </div>
                 )}
               </div>
