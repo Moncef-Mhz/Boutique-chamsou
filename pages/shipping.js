@@ -23,7 +23,7 @@ const ShippingScreen = () => {
     setValue("fullName", shippingAddress.fullName);
     setValue("address", shippingAddress.address);
     setValue("wilaya", shippingAddress.wilaya);
-    setValue("postalCode", shippingAddress.phoneNumber);
+    setValue("phoneNumber", shippingAddress.phoneNumber);
   }, [setValue, shippingAddress]);
 
   const submitHandler = ({ fullName, address, wilaya, phoneNumber }) => {
