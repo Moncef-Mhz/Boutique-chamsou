@@ -37,7 +37,7 @@ function OrderHistoryScreen() {
   }, []);
   return (
     <Layout title="Order History">
-      <h1 className="mb-4 text-xl">Order History</h1>
+      <h1 className="mb-4 text-xl p-5">Order History</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (

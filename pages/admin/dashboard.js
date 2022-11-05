@@ -77,7 +77,7 @@ const AdminDashboardScreen = () => {
   };
   return (
     <Layout title="Admin Dashboard">
-      <div className="grid  md:grid-cols-4 md:gap-5">
+      <div className="grid  md:grid-cols-4 md:gap-5 p-5">
         <div>
           <ul>
             <li>
