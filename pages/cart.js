@@ -1,7 +1,8 @@
+/*eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import React, { useContext } from "react";
 import Layout from "../components/layout";
-import Image from "next/image";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Store } from "../utils/Store";
 import { useRouter } from "next/router";
@@ -55,12 +56,11 @@ const CartScreen = () => {
                       <td>
                         <Link href={`/product/${item.Slug}`}>
                           <a className="flex items-center">
-                            <Image
+                            <img
                               src={item.Image}
                               alt={item.Name}
-                              width={50}
-                              height={50}
-                            ></Image>
+                              className="w-[50px] h-[50px]"
+                            />
                             {item.Name}
                           </a>
                         </Link>

@@ -1,6 +1,6 @@
+/*eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Cookies from "js-cookie";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
@@ -105,12 +105,12 @@ const PlaceOrderScreen = () => {
                       <td>
                         <Link href={`/product/${item.Slug}`}>
                           <a className="flex items-center">
-                            <Image
+                            <img
                               src={item.Image}
                               alt={item.Name}
                               width={50}
                               height={50}
-                            ></Image>
+                            />
                             {item.Name}
                           </a>
                         </Link>

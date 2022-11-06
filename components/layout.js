@@ -41,32 +41,16 @@ const Layout = ({ children, title }) => {
   return (
     <>
       <Head>
-        <title>{title ? title + " - Chamsou Shop" : "Chamsou Shop"}</title>
+        <title>
+          {title ? title + " - Boutique Chamsou" : "Boutique Chamsou"}
+        </title>
         <meta name="description" content="Chamsou store" />
       </Head>
       <ToastContainer position="bottom-center" limit={1} />
 
       {/* Header */}
       <header className="z-[9999]">
-        {/* <div className="w-full h-[30px] items-center justify-between px-11 bg-slate-300 text-xs md:flex hidden">
-        <h1 className="cursor-pointer">chemsouml356@gmail.com</h1>
-        <h1 className="cursor-pointer">Contact us</h1>
-      </div> */}
         <div className="w-full h-[80px] flex justify-between px-10 items-center border-b z-10 bg-white">
-          {/* nav menu* large-screen */}
-          <ul className="justify-between items-center gap-8 hidden md:flex">
-            <li className="cursor-pointer hover:text-black/75 ease-in-out duration-200">
-              New Arrivals
-            </li>
-            <li className="cursor-pointer hover:text-black/75 ease-in-out duration-200">
-              Men
-            </li>
-            <li className="cursor-pointer hover:text-black/75 ease-in-out duration-200">
-              Women
-            </li>
-          </ul>
-
-          {/* Logo* */}
           <Link href="/">
             <h1 className="text-3xl z-20 cursor-pointer font-bold">CH</h1>
           </Link>
@@ -216,7 +200,45 @@ const Layout = ({ children, title }) => {
                 {status === "loading" ? (
                   "Loading..."
                 ) : session?.user ? (
-                  session.user.name
+                  <Menu as="div" className="relative inline-block">
+                    <Menu.Button className="Link">
+                      {session.user.name}
+                    </Menu.Button>
+                    <Menu.Items className="absolute bottom-10 right-0 w-56 origin-top-right shadow-lg bg-white rounded-xl overflow-hidden">
+                      <Menu.Item>
+                        <DropdownLink className="dropdown-link" href="/profile">
+                          Profile
+                        </DropdownLink>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <DropdownLink
+                          className="dropdown-link"
+                          href="/Order-History"
+                        >
+                          Oreder History
+                        </DropdownLink>
+                      </Menu.Item>
+                      {session.user.isAdmin && (
+                        <Menu.Item>
+                          <DropdownLink
+                            className="dropdown-link"
+                            href="/admin/dashboard"
+                          >
+                            Admin Dashboard
+                          </DropdownLink>
+                        </Menu.Item>
+                      )}
+                      <Menu.Item>
+                        <a
+                          className="dropdown-link"
+                          href="#"
+                          onClick={logoutClickHandler}
+                        >
+                          Logout
+                        </a>
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Menu>
                 ) : (
                   <Link href="/login">
                     <h1 className="cursor-pointer hover:text-black/70 ">
@@ -238,6 +260,17 @@ const Layout = ({ children, title }) => {
 
       {/* main section  */}
       <main>{children}</main>
+      <footer className="relative flex flex-col  justify-center px-10 items-center bottom-0 left-0 w-full h-[80px] border-t bg-white">
+        <h1 className="text-xs border-b-2 pb-2">
+          © 2022 Chamsou All Rights Reserved
+        </h1>
+        <div className="text-xs pt-2 flex ">
+          Developed by
+          <h1 className="Link">
+            <Link href="https://www.instagram.com/moncef_mhz/">Moncef_mhz</Link>
+          </h1>
+        </div>
+      </footer>
     </>
   );
 };

@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 const ProductScreen = (props) => {
   const { product } = props;
   const [Size, SetSize] = useState("");
-  const [Color, SetColor] = useState("");
   const [Save, SetSave] = useState(false);
   const { state, dispatch } = useContext(Store);
 
@@ -41,9 +40,6 @@ const ProductScreen = (props) => {
     SetSize(e.target.value);
   };
 
-  const ColorHandler = (e) => {
-    SetColor(e.target.value);
-  };
   const SaveHandler = () => {
     SetSave(!Save);
   };
@@ -66,13 +62,13 @@ const ProductScreen = (props) => {
 
   return (
     <Layout title={product.Name}>
-      <div className="absolute top-0 left-0 md:top-10 -z-10 w-full h-screen  flex md:items-center md:py-10 md:px-20 md:justify-between md:gap-5 flex-col md:flex-row">
+      <div className=" absolute left-0 top-0 md:top-10 z-10 w-full h-screen  flex md:items-center md:py-10 md:px-20 md:justify-between md:gap-5 flex-col md:flex-row">
         <img
           src={product.Image}
           alt={product.Slug}
-          className="w-full h-[700px] md:w-[800px] md:h-[500px] border-2 border-[#161616]"
+          className="w-full md:w-[800px] md:h-[500px] "
         />
-        <div className="px-5 py-6 flex flex-col h-full justify-between gap-4 md:gap-1 w-full bg-white ">
+        <div className="p-5 flex flex-col h-full gap-6 md:gap-1 w-full bg-white rounded-t-3xl md:rounded-none">
           <div className="flex w-full items-center justify-between">
             <h1 className="text-3xl font-bold text-[#161616]">
               {product.Name}
@@ -84,8 +80,7 @@ const ProductScreen = (props) => {
           <h1 className="text-xl font-semibold text-[#161616]">
             Brand: {product.Brand}
           </h1>
-          <p className="text-sm text-[#161616]/75">{product.Descreption}</p>
-          <h1 className="text-2xl font-bold text-[#161616]">Select a Size:</h1>
+          <h1 className="text-xl font-semibold text-[#161616]">Size:</h1>
           <div className="flex flex-row gap-2  w-full justify-evenly">
             {product.Taille.map((Element) => {
               return (
@@ -104,35 +99,8 @@ const ProductScreen = (props) => {
               );
             })}
           </div>
-          {product.Color ? (
-            <>
-              {product.Color ? (
-                <h1 className="text-2xl font-bold text-[#161616]">
-                  Select a Color:
-                </h1>
-              ) : null}
 
-              <div className="flex flex-row gap-2 mt-4 w-full justify-evenly ">
-                {product.Color.map((Element) => {
-                  return (
-                    <button
-                      onClick={ColorHandler}
-                      value={Element}
-                      key={Element}
-                      style={{
-                        backgroundColor: `${Element}`,
-                      }}
-                      className={
-                        Color === Element
-                          ? ` w-10 h-10 rounded-[100%] border-0 border-[${Element}]}]`
-                          : " w-10 h-10 rounded-[100%] border-2"
-                      }
-                    ></button>
-                  );
-                })}
-              </div>
-            </>
-          ) : null}
+          <p className="text-sm text-[#161616]/75">{product.Descreption}</p>
 
           <div className="flex items-center gap-10 justify-evenly">
             <button
@@ -159,10 +127,10 @@ export default ProductScreen;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const { slug } = params;
+  const { Slug } = params;
 
   await db.connect();
-  const product = await Product.findOne({ slug }).lean();
+  const product = await Product.findOne({ Slug }).lean();
   await db.disconnect();
   return {
     props: {

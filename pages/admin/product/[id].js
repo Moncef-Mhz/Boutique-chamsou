@@ -68,7 +68,7 @@ export default function AdminProductEditScreen() {
         setValue("Taille", data.Taille);
         setValue("Brand", data.Brand);
         setValue("CountInStock", data.CountInStock);
-        setValue("Description", data.Description);
+        setValue("Descreption", data.Descreption);
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
@@ -79,41 +79,43 @@ export default function AdminProductEditScreen() {
 
   const router = useRouter();
 
-  const uploadHandler = async (e, ImageField = "Image") => {
-    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
-    try {
-      dispatch({ type: "UPLOAD_REQUEST" });
-      const {
-        data: { signature, timestamp },
-      } = await axios("/api/admin/cloudinary-sign");
+  // const uploadHandler = async (e, ImageField = "Image") => {
+  //   const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
+  //   try {
+  //     dispatch({ type: "UPLOAD_REQUEST" });
+  //     const {
+  //       data: { signature, timestamp },
+  //     } = await axios("/api/admin/cloudinary-sign");
 
-      const file = e.target.files[0];
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("signature", signature);
-      formData.append("timestamp", timestamp);
-      formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
-      const { data } = await axios.post(url, formData);
-      dispatch({ type: "UPLOAD_SUCCESS" });
-      setValue(ImageField, data.secure_url);
-      toast.success("File uploaded successfully");
-    } catch (err) {
-      dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
-      toast.error(getError(err));
-    }
-  };
+  //     const file = e.target.files[0];
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("signature", signature);
+  //     formData.append("timestamp", timestamp);
+  //     formData.append("api_key", process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
+  //     const { data } = await axios.post(url, formData);
+  //     dispatch({ type: "UPLOAD_SUCCESS" });
+  //     setValue(ImageField, data.secure_url);
+  //     toast.success("File uploaded successfully");
+  //   } catch (err) {
+  //     dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
+  //     toast.error(getError(err));
+  //   }
+  // };
 
   const submitHandler = async ({
     Name,
     Slug,
     Price,
     Categories,
-    Taille,
+    taille,
     Image,
     Brand,
     CountInStock,
-    Description,
+    Descreption,
   }) => {
+    var Taille = taille.split(",");
+    console.log(Taille);
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(`/api/admin/products/${productId}`, {
@@ -125,7 +127,7 @@ export default function AdminProductEditScreen() {
         Image,
         Brand,
         CountInStock,
-        Description,
+        Descreption,
       });
       dispatch({ type: "UPDATE_SUCCESS" });
       toast.success("Product updated successfully");
@@ -225,7 +227,7 @@ export default function AdminProductEditScreen() {
                   <div className="text-red-500">{errors.Image.message}</div>
                 )}
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label htmlFor="ImageFile">Upload Image</label>
                 <input
                   type="file"
@@ -235,7 +237,7 @@ export default function AdminProductEditScreen() {
                 />
 
                 {loadingUpload && <div>Uploading....</div>}
-              </div>
+              </div> */}
               <div className="mb-4">
                 <label htmlFor="taille">taille</label>
                 <input
@@ -297,18 +299,18 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="CountInStock">Description</label>
+                <label htmlFor="Descreption">Descreption</label>
                 <input
                   type="text"
                   className="w-full"
-                  id="Description"
-                  {...register("Description", {
-                    required: "Please enter Description",
+                  id="Descreption"
+                  {...register("Descreption", {
+                    required: "Please enter Descreption",
                   })}
                 />
-                {errors.Description && (
+                {errors.Descreption && (
                   <div className="text-red-500">
-                    {errors.Description.message}
+                    {errors.Descreption.message}
                   </div>
                 )}
               </div>
