@@ -41,11 +41,10 @@ function reducer(state, action) {
 export default function AdminProductEditScreen() {
   const { query } = useRouter();
   const productId = query.id;
-  const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
-    useReducer(reducer, {
-      loading: true,
-      error: "",
-    });
+  const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: "",
+  });
 
   const {
     register,
