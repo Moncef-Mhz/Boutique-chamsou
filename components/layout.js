@@ -260,7 +260,7 @@ const Layout = ({ children, title }) => {
 
       {/* main section  */}
       <main>{children}</main>
-      <footer className="relative flex flex-col  justify-center px-10 items-center bottom-0 left-0 w-full h-[80px] border-t bg-white">
+      {/* <footer className="relative flex flex-col  justify-center px-10 items-center bottom-0 left-0 w-full h-[80px] border-t bg-white">
         <h1 className="text-xs border-b-2 pb-2">
           © 2022 Chamsou All Rights Reserved
         </h1>
@@ -270,7 +270,7 @@ const Layout = ({ children, title }) => {
             <Link href="https://www.instagram.com/moncef_mhz/">Moncef_mhz</Link>
           </h1>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };
