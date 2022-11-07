@@ -49,7 +49,7 @@ const Layout = ({ children, title }) => {
       <ToastContainer position="bottom-center" limit={1} />
 
       {/* Header */}
-      <header className="z-[9999]">
+      <header className="z-10">
         <div className="w-full h-[80px] flex justify-between px-10 items-center border-b z-10 bg-white">
           <Link href="/">
             <h1 className="text-3xl z-20 cursor-pointer font-bold">CH</h1>

@@ -61,13 +61,13 @@ const ProductScreen = ({ product }) => {
 
   return (
     <Layout title={product.Name}>
-      <div className=" absolute left-0 top-0 md:top-10 z-10 w-full h-screen  flex md:items-center md:py-10 md:px-20 md:justify-between md:gap-5 flex-col md:flex-row">
+      <div className=" z-10 absolute md:relative left-0 top-0  w-full h-screen  flex md:items-center md:px-5 md:py-5 md:justify-between flex-col md:flex-row">
         <img
           src={product.Image}
           alt={product.Slug}
-          className="w-full md:w-[800px] md:h-[500px] "
+          className="w-full md:w-full md:h-full border-r-2`"
         />
-        <div className="p-5 flex flex-col h-full gap-6 md:gap-1 w-full bg-white rounded-t-3xl md:rounded-none">
+        <div className="p-5 flex flex-col h-full gap-6 md:gap-1 w-full bg-white rounded-t-3xl md:justify-evenly py-5 md:rounded-none">
           <div className="flex w-full items-center justify-between">
             <h1 className="text-3xl font-bold text-[#161616]">
               {product.Name}
@@ -126,10 +126,10 @@ export default ProductScreen;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const { slug } = params;
+  const { Slug } = params;
 
   await db.connect();
-  const product = await Product.findOne({ slug }).lean();
+  const product = await Product.findOne({ Slug }).lean();
   await db.disconnect();
   return {
     props: {
