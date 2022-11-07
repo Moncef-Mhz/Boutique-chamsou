@@ -191,7 +191,7 @@ export default function AdminProductEditScreen() {
                   className="w-full"
                   id="Slug"
                   {...register("Slug", {
-                    required: "Please enter slug",
+                    required: "Please enter Slug",
                   })}
                 />
                 {errors.Slug && (

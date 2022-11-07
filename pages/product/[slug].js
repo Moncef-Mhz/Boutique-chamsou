@@ -15,8 +15,7 @@ import Product from "../../models/Product";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const ProductScreen = (props) => {
-  const { product } = props;
+const ProductScreen = ({ product }) => {
   const [Size, SetSize] = useState("");
   const [Save, SetSave] = useState(false);
   const { state, dispatch } = useContext(Store);
